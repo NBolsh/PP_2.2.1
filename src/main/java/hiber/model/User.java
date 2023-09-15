@@ -8,7 +8,8 @@ import java.util.Objects;
 public class User {
 
    @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE)
+   @Column(name = "user_id")
    private Long id;
 
    @Column(name = "name")
@@ -20,9 +21,8 @@ public class User {
    @Column(name = "email")
    private String email;
 
-
-
-   @Embedded
+   @OneToOne
+   @JoinColumn(name = "car_id")
    private Car car;
 
 
@@ -72,8 +72,7 @@ public class User {
       this.email = email;
    }
    public Car getCar() {
-         return car;
-
+      return car;
    }
 
    public void setCar(Car car) {

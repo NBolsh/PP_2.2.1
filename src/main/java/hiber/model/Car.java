@@ -3,12 +3,20 @@ package hiber.model;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Embeddable
+
+@Entity
+@Table(name = "car")
 public class Car {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
+    private int id;
     @Column (name = "car_model")
     private String model;
     @Column (name = "car_series")
     private int series;
+    @OneToOne(mappedBy = "car")
+    private User user;
 
     public Car(){
     }
